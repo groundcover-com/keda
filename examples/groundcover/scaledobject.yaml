@@ -1,0 +1,26 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: api-groundcover
+  namespace: apps
+spec:
+  scaleTargetRef:
+    name: api
+  minReplicaCount: 2
+  maxReplicaCount: 20
+  pollingInterval: 30
+  triggers:
+    - type: groundcover
+      metricType: AverageValue
+      metadata:
+        serverAddress: https://app.groundcover.com
+        backendId: backend
+        threshold: "60"
+        query: >-
+          resource_type:http is_inbound:true source:eBPF
+          cluster:example-cluster namespace:apps workload:api
+          | stats by(workload) sum(total_counter) as requests
+          | math requests / 300 as rps
+          | fields rps
+      authenticationRef:
+        name: groundcover-api

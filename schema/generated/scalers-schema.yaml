@@ -2232,6 +2232,41 @@ scalers:
           optional: true
           metadataVariableReadable: true
           triggerAuthenticationVariableReadable: true
+    - type: groundcover
+      parameters:
+        - name: serverAddress
+          type: string
+          metadataVariableReadable: true
+          triggerAuthenticationVariableReadable: true
+        - name: backendId
+          type: string
+          metadataVariableReadable: true
+          triggerAuthenticationVariableReadable: true
+        - name: apiKey
+          type: string
+          triggerAuthenticationVariableReadable: true
+        - name: query
+          type: string
+          metadataVariableReadable: true
+        - name: valueField
+          type: string
+          optional: true
+          metadataVariableReadable: true
+        - name: lookback
+          type: string
+          default: 5m
+          metadataVariableReadable: true
+        - name: delay
+          type: string
+          default: 1m
+          metadataVariableReadable: true
+        - name: threshold
+          type: string
+          metadataVariableReadable: true
+        - name: activationThreshold
+          type: string
+          default: "0"
+          metadataVariableReadable: true
     - type: huawei-cloudeye
       parameters:
         - name: namespace
