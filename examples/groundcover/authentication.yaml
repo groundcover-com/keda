@@ -1,0 +1,10 @@
+apiVersion: keda.sh/v1alpha1
+kind: TriggerAuthentication
+metadata:
+  name: groundcover-api
+  namespace: apps
+spec:
+  secretTargetRef:
+    - parameter: apiKey
+      name: groundcover-api
+      key: apiKey
